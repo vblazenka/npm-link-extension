@@ -1,0 +1,14 @@
+{
+  "name": "npm-link",
+  "version": "1.0.0",
+  "description": "Repo for npm-link chrome extension.",
+  "main": "script.js",
+  "author": "Vedran Blazenka <blazenka.vedran@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build ./src/index.js -d ./ -o script.js"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.9.7"
+  }
+}
