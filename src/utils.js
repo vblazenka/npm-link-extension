@@ -49,7 +49,7 @@ export const createElement = options => {
   }
 
   return el
-}
+};
 
 export const createNPMAnchor = (packageName) => createElement({
   'tagName': 'a',
@@ -62,4 +62,12 @@ export const createNPMAnchor = (packageName) => createElement({
 
 export const isRelativeImport = (packageName) => {
   return packageName.includes('./');
-}
+};
+
+export const checkIfNpmLink = (node) => {
+  let links = Array.from(node.childNodes).filter(node => {
+    return node && node.tagName === 'A' && node.href;
+  });
+
+  return links && links.length;
+};

@@ -1,11 +1,10 @@
-import { createNPMAnchor, getElementStyle, canUseInRepo, isRelativeImport } from "./utils";
+import { createNPMAnchor, getElementStyle, canUseInRepo, isRelativeImport, checkIfNpmLink } from "./utils";
 
-
-let location = window.location.href;
 let timer;
 
 function start() {
   if (canUseInRepo()) {
+    let $package;
     const lines = document.querySelectorAll('.js-file-line');
 
     lines.forEach(function (line) {
@@ -13,9 +12,13 @@ function start() {
 
       words.forEach((word, index) => {
         if (word.textContent === 'from' || word.textContent === 'require') {
-          const $package = words[index + 1];
+          $package = words[index + 1];
 
           if (isRelativeImport($package.textContent)) {
+            return;
+          }
+
+          if (checkIfNpmLink($package)) {
             return;
           }
 
@@ -28,15 +31,11 @@ function start() {
         }
       });
     });
-
-    location = window.location.href;
   }
 
   clearInterval(timer);
   timer = setInterval(() => {
-    if (location !== window.location.href) {
-      start();
-    }
+    start();
   }, 1000);
 
 }
