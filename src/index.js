@@ -4,7 +4,6 @@ let timer;
 
 function start() {
   if (canUseInRepo()) {
-    let $package;
     const lines = document.querySelectorAll('.js-file-line');
 
     lines.forEach(function (line) {
@@ -12,7 +11,7 @@ function start() {
 
       words.forEach((word, index) => {
         if (word.textContent === 'from' || word.textContent === 'require') {
-          $package = words[index + 1];
+          const $package = words[index + 1];
 
           if (isRelativeImport($package.textContent)) {
             return;
