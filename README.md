@@ -1,4 +1,5 @@
-# npm-link
+# Deprecated -> use https://octolinker.now.sh/
+## npm-link
 
 Chrome extension that links absolute `import` and `require` statements on GitHub with their NPM page.
 
